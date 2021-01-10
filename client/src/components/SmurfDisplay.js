@@ -12,7 +12,7 @@ this.props.getSmurf();
 
     render() {
         return(<div>
-            <h2>Smurf Display:</h2>
+            <h2>Meet Our Smurfs:</h2>
             {this.props.smurfArray.map(smurf => <Smurf smurf={smurf} />)}
         </div>)
     }
