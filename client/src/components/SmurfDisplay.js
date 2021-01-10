@@ -13,15 +13,17 @@ this.props.getSmurf();
     render() {
         return(<div>
             <h2>Meet Our Smurfs:</h2>
-            {this.props.smurfArray.map(smurf => <Smurf smurf={smurf} />)}
+            {this.props.loading ? <h2>Loading smurfs...</h2> :  (this.props.smurfArray.map(smurf => <Smurf smurf={smurf} />))}
+           
         </div>)
     }
 }
 
 const mapStateToProps = (state) => {
-    console.log('SmurfDisplay state: ', state.smurfs);
+    console.log('SmurfDisplay state: ', state);
     return {
-        smurfArray: state.smurfs
+        smurfArray: state.smurfs,
+        loading: state.loading
     }
 }
 
