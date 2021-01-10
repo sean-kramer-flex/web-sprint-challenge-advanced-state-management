@@ -1,16 +1,56 @@
+import axios from 'axios';
 import React from 'react';
+import { connect } from 'react-redux';
+import { addSmurf } from '../actions'
 
 class AddForm extends React.Component {
+    constructor(props) {
+        super(props);
+this.state = {
+    id: Date.now(),
+    name: '',
+    position: '',
+    nickname: '',
+    description: ''
+
+}
+this.handleChange=this.handleChange.bind(this)
+this.handleClick=this.handleClick.bind(this)
+    }
+
+   
+
+    handleChange(event) {
+        event.persist()
+        const name = event.target.name
+        const value = event.target.value
+        this.setState({...this.state, 
+        [name]: value})
+
+    }
+
+    handleClick() {
+        this.props.addSmurf(this.state)
+
+//         axios.post("http://localhost:3333/smurfs", this.state)
+//         .then(res => {
+// console.log(res);
+//         })
+//         .catch(err => {
+//             console.log(err);
+//         })
+    }
+ 
 
     render() {
         return(<section>
             <h2>Add Smurf</h2>
-            <form>
+            <form onSubmit={this.handleClick}> 
                 <div className="form-group">
                     <label htmlFor="name">Name:</label><br/>
                     <input onChange={this.handleChange} name="name" id="name" />
                     <label htmlFor="position">Position:</label><br/>
-                    <input onChange={this.handleChange} name="postition" id="postion" />
+                    <input onChange={this.handleChange} name="position" id="position" />
                     <label htmlFor="nickname">Nickname:</label><br/>
                     <input onChange={this.handleChange} name="nickname" id="nickname" />
                     <label htmlFor="description">Description:</label><br/>
@@ -24,7 +64,9 @@ class AddForm extends React.Component {
     }
 }
 
-export default AddForm;
+
+
+export default connect(null, {addSmurf})(AddForm);
 
 //Task List:
 //1. Add in all necessary import components and library methods.
