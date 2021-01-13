@@ -5,6 +5,7 @@ export const FETCH_SMURFS_SUCCESS = 'FETCH_SMURFS_SUCCESS'
 export const FETCH_SMURFS_FAILURE = 'FETCH_SMURFS_FAILURE'
 export const ADD_SMURF_SUCCESS = 'ADD_SMURF_SUCCESS'
 export const ADD_SMURF_FAILURE = 'ADD_SMURF_FAILURE'
+export const  FORM_ERROR = 'FORM_ERROR'
 
 
 
@@ -28,9 +29,16 @@ dispatch({type: ADD_SMURF_SUCCESS, payload: res.data})
   })
   .catch(err => {
       console.log(err);
-      dispatch({type: ADD_SMURF_FAILURE, payload: err.message})
+      dispatch({type: ADD_SMURF_FAILURE, payload: "Please fill out form"})
   })
 
+}
+
+export const formError = (error) => {
+  return {
+    type: FORM_ERROR,
+    payload: error
+  }
 }
 
 

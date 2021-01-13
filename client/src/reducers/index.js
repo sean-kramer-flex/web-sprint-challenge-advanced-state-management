@@ -1,4 +1,4 @@
-import { FETCH_SMURFS_REQUEST, FETCH_SMURFS_SUCCESS, FETCH_SMURFS_FAILURE, ADD_SMURF_SUCCESS, ADD_SMURF_FAILURE } from '../actions'
+import { FETCH_SMURFS_REQUEST, FETCH_SMURFS_SUCCESS, FETCH_SMURFS_FAILURE, ADD_SMURF_SUCCESS, ADD_SMURF_FAILURE, FORM_ERROR } from '../actions'
 
 
 const initialState = {
@@ -36,6 +36,15 @@ const reducer = (state = initialState, action)=>{
                 action.payload
               ]
             }
+            case ADD_SMURF_FAILURE:
+              return {
+                ...state,
+                error: action.payload
+              }
+              case FORM_ERROR:
+                return {
+                  ...state
+                }
           default:
             return state
   }
